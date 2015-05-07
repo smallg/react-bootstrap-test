@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <script src="../node_modules/react/dist/react.js"></script>
+    <script src="../node_modules/react/dist/JSXTransformer.js"></script>
+    <script src="../bower_components/react-bootstrap/react-bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div id="button"></div>
+    <div id="block-button"></div>
+    <div id="loading-button"></div>
+</div>
+<script type="text/jsx">
+    //general buttons
+    var ButtonToolbar = ReactBootstrap.ButtonToolbar;
+    var Button = ReactBootstrap.Button;
+    var buttonsInstance = (
+            <ButtonToolbar>
+                <Button>Default</Button>
+
+                <Button bsStyle='primary'>Primary</Button>
+
+                <Button bsStyle='success'>Success</Button>
+
+                <Button bsStyle='info' disabled>Info</Button>
+
+                <Button bsStyle='warning'>Warning</Button>
+
+                <Button bsStyle='danger' active>Danger</Button>
+
+                <Button bsStyle='link'>Link</Button>
+            </ButtonToolbar>
+    );
+    React.render(buttonsInstance, document.getElementById("button"));
+
+    //block buttons
+    var wellStyle = {maxWidth: 400, margin: '0 auto 10px'};
+    var buttonsInstance2 = (
+            <div className='well' style={wellStyle}>
+                <Button bsStyle='primary' bsSize="large" block>Block level button</Button>
+                <Button bsSize="large" block>Block level button</Button>
+            </div>
+    );
+    React.render(buttonsInstance2, document.getElementById("block-button"));
+
+    //loading buttons
+    var LoadingButton = React.createClass({
+        getInitialState: function () {
+            return {
+                isLoading: false
+            }
+        },
+        render: function () {
+            var isLoading = this.state.isLoading;
+            return (
+                    <Button bsStyle="primary" disabled={isLoading} onClick={!isLoading?this.handleClick:null}>
+                        {isLoading ? 'Loading...' : 'Loading state'}
+                    </Button>
+            );
+        },
+        handleClick: function () {
+            this.setState({isLoading: true});
+            setTimeout(function(){
+                return setState({isLoading: false});
+            }, 2000);
+        }
+    });
+    React.render(<LoadingButton />, document.getElementById("loading-button"));
+</script>
+</body>
+</html>
