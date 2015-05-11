@@ -11,68 +11,42 @@
 </head>
 <body>
 <div class="container">
-    <div id="button"></div>
-    <div id="block-button"></div>
-    <div id="loading-button"></div>
+    <section>
+        <h1 class="page-header">Normal button</h1>
+        <div id="button"></div>
+    </section>
+    <section>
+        <h1 class="page-header">Button block</h1>
+        <div id="block-button"></div>
+    </section>
+    <section>
+        <h1 class="page-header">Button loading state</h1>
+        <div id="loading-button"></div>
+    </section>
+    <section>
+        <h1 class="page-header">Button groups</h1>
+        <div id="button-groups"></div>
+    </section>
+    <section>
+        <h1 class="page-header">Button nesting</h1>
+        <div id="button-nesting"></div>
+    </section>
+    <section>
+        <h1 class="page-header">Button justified</h1>
+        <div id="button-justified"></div>
+    </section>
+    <section>
+        <h1 class="page-header">Button dropdowns</h1>
+        <div id="button-dropdowns"></div>
+    </section>
 </div>
-<script type="text/jsx">
-    //general buttons
-    var ButtonToolbar = ReactBootstrap.ButtonToolbar;
-    var Button = ReactBootstrap.Button;
-    var buttonsInstance = (
-            <ButtonToolbar>
-                <Button>Default</Button>
-
-                <Button bsStyle='primary'>Primary</Button>
-
-                <Button bsStyle='success'>Success</Button>
-
-                <Button bsStyle='info' disabled>Info</Button>
-
-                <Button bsStyle='warning'>Warning</Button>
-
-                <Button bsStyle='danger' active>Danger</Button>
-
-                <Button bsStyle='link'>Link</Button>
-            </ButtonToolbar>
-    );
-    React.render(buttonsInstance, document.getElementById("button"));
-
-    //block buttons
-    var wellStyle = {maxWidth: 400, margin: '0 auto 10px'};
-    var buttonsInstance2 = (
-            <div className='well' style={wellStyle}>
-                <Button bsStyle='primary' bsSize="large" block>Block level button</Button>
-                <Button bsSize="large" block>Block level button</Button>
-            </div>
-    );
-    React.render(buttonsInstance2, document.getElementById("block-button"));
-
-    //loading buttons
-    var LoadingButton = React.createClass({
-        getInitialState: function () {
-            return {
-                isLoading: false
-            }
-        },
-        render: function () {
-            var isLoading = this.state.isLoading;
-            return (
-                    <Button bsStyle="primary" disabled={isLoading} onClick={!isLoading?this.handleClick:null}>
-                        {isLoading ? 'Loading...' : 'Loading state'}
-                    </Button>
-            );
-        },
-        handleClick: function(){
-            this.setState({isLoading: true});
-            (function(_this){
-                setTimeout(function(){
-                    _this.setState({isLoading: false});
-                }, 2000);
-            })(this);
-        }
-    });
-    React.render(<LoadingButton />, document.getElementById("loading-button"));
-</script>
+<p></p>
+<script type="text/jsx" src="js/general-buttons.js"></script>
+<script type="text/jsx" src="js/block-button.js"></script>
+<script type="text/jsx" src="js/loading-button.js"></script>
+<script type="text/jsx" src="js/button-groups.js"></script>
+<script type="text/jsx" src="js/button-nesting.js"></script>
+<script type="text/jsx" src="js/button-justified.js"></script>
+<script type="text/jsx" src="js/button-dropdowns.js"></script>
 </body>
 </html>
