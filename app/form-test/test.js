@@ -1,23 +1,38 @@
 var MyForm = React.createClass({
-    getInitialState: function() {
-        return {value: 'Hello!'};
+    getInitialState: function () {
+        return {username: 'admin', pwd: 'admin'};
     },
-    handleChange: function(event) {
+    handleChange: function (event) {
         this.setState({value: event.target.value});
         console.log(this.state);
     },
-    handleSave: function(e) {
+    handleSave: function (e) {
         e.preventDefault();
-        var val = this.refs.name.getDOMNode().value;
-        console.log(val)
+        var username = this.refs.username.getDOMNode().value;
+        var pwd = this.refs.pwd.getDOMNode().value;
+        console.log(username);
+        $.ajax({
+            url: "http://localhost:8080/test-api/login",
+            type: "POST",
+            data: {
+                username: username,
+                pwd: pwd
+            }
+        });
     },
     render: function () {
-        var value = this.state.value;
+        var username = this.state.username;
+        var pwd = this.state.pwd;
         return (
             <form className="form-inline">
                 <div className="form-group">
                     <label>Name</label>
-                    <input ref="name" type="text" className="form-control" value={value} onChange={this.handleChange}/>
+                    <input ref="username" type="text" className="form-control" value={username}
+                           onChange={this.handleChange}/>
+                </div>
+                <div className="form-group">
+                    <label>Password</label>
+                    <input ref="pwd" type="password" className="form-control" value={pwd}/>
                 </div>
                 <div className="form-group">
                     <button className="btn btn-primary" onClick={this.handleSave}>Save</button>
