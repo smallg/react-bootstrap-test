@@ -50,6 +50,5 @@ $.ajax({
     url: "http://localhost:8080/test-api/certificate/all",
     type: "GET"
 }).done(function (data) {
-    console.log(data);
     React.render(<TableList data={data} />, document.getElementById("my-table"));
 });
